@@ -34,6 +34,7 @@
             android:layout_above="@id/button_new_game"
             android:layout_below="@id/connectivity_indicator"
             android:layout_centerInParent="true"
+            android:layout_marginTop="72dp"
             app:game="@{viewModel.game}"
             app:onGameUpdated="@{viewModel}" />
 
@@ -42,7 +43,8 @@
             android:layout_height="wrap_content"
             android:layout_above="@id/button_new_game"
             android:layout_centerHorizontal="true"
-            android:text="@{viewModel.gameStatusMessage}" />
+            android:text="@{viewModel.gameStatusMessage}"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/button_new_game"

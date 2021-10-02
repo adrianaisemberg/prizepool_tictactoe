@@ -13,7 +13,8 @@ open class EchoViewModel(
     private val service: TicTacToeService,
 ) : ViewViewModel {
 
-    val statusColor = MutableLiveData(COLOR_LOADING)
+    val statusColor = MutableLiveData(COLOR_INITIAL)
+    val isLoading = MutableLiveData(false)
     private val timer = Timer()
 
     override fun onFinishInflate() {
@@ -23,7 +24,7 @@ open class EchoViewModel(
     }
 
     private fun loopEchoCheck() {
-        timer.scheduleNowAtFixedRate(1000L) {
+        timer.scheduleNowAtFixedRate(INTERVAL) {
             beginEchoCheck()
         }
     }
@@ -51,17 +52,23 @@ open class EchoViewModel(
 
     protected fun setSuccess() = setStatusColor(COLOR_SUCCESS)
     protected fun setFailure() = setStatusColor(COLOR_FAILURE)
-    protected fun setLoading() = setStatusColor(COLOR_LOADING)
+    protected fun setLoading() {
+        async_ui {
+            isLoading.value = true
+        }
+    }
 
     private fun setStatusColor(color: Int) {
         async_ui {
+            isLoading.value = false
             statusColor.value = color
         }
     }
 
     companion object {
-        private const val COLOR_LOADING = 0xff666666.toInt()
+        private const val COLOR_INITIAL = 0xff666666.toInt()
         private const val COLOR_SUCCESS = 0xff00ff00.toInt()
         private const val COLOR_FAILURE = 0xffff0000.toInt()
+        private const val INTERVAL = 1000L
     }
 }

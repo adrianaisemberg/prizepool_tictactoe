@@ -15,8 +15,9 @@
         android:layout_height="match_parent">
 
         <com.adrianaisemberg.tictactoe.views.CircleFillView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:alpha="@{viewModel.isLoading() ? 0.5F : 1F}"
             app:fillColor="@{viewModel.statusColor}" />
 
     </RelativeLayout>
