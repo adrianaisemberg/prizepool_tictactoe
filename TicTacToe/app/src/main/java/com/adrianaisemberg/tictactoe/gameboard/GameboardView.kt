@@ -33,6 +33,8 @@ class GameboardView @JvmOverloads constructor(
         val rows = game.gameboard.groupBy { cell -> cell.y }
         val layoutInflater = context.layoutInflater()
 
+        binding.boardContainer.removeAllViews()
+
         rows.values.forEach { cells ->
             val rowLayout =
                 layoutInflater.inflate(R.layout.view_gameboard_row, null) as LinearLayout
@@ -40,10 +42,16 @@ class GameboardView @JvmOverloads constructor(
             binding.boardContainer.addView(rowLayout)
 
             cells.forEach { cell ->
-                val cellView = GameboardCellView(context).apply {
-                    setViewModel(GameboardCellViewModel(viewModel.service, game, cell))
-                }
-                rowLayout.addView(cellView)
+                rowLayout.addView(GameboardCellView(context).apply {
+                    setViewModel(
+                        GameboardCellViewModel(
+                            service = viewModel.service,
+                            game = game,
+                            cell = cell,
+                            onGameUpdated = viewModel::onGameUpdated,
+                        )
+                    )
+                })
             }
         }
     }

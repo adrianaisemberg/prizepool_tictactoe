@@ -13,4 +13,10 @@ class GameboardViewModel(
 
     val background = Drawables.boardLines()
 
+    fun onGameUpdated() {
+        val game = this.game ?: return
+        if (game.winner == Winner.None) return
+
+
+    }
 }

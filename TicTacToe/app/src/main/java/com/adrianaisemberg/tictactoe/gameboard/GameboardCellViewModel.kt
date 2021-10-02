@@ -3,18 +3,21 @@ package com.adrianaisemberg.tictactoe.gameboard
 import androidx.lifecycle.MutableLiveData
 import com.adrianaisemberg.tictactoe.common.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.*
+import com.adrianaisemberg.tictactoe.utils.Action
 import com.adrianaisemberg.tictactoe.utils.async_io
 
 class GameboardCellViewModel(
     private val service: TicTacToeService,
     private val game: Game,
     private val cell: GameboardCell,
+    private val onGameUpdated: Action,
 ) : ViewViewModel {
 
     val image = MutableLiveData(cell.tile.drawableResId)
 
     fun onCellClicked() {
         if (cell.tile != Tile.Empty) return
+        if (game.winner != Winner.None) return
 
         val xcount = game.gameboard.count { it.tile == Tile.X }
         val ocount = game.gameboard.count { it.tile == Tile.O }
@@ -45,5 +48,7 @@ class GameboardCellViewModel(
 
         cell.tile = updatedCell.tile
         image.value = updatedCell.tile.drawableResId
+
+        onGameUpdated.invoke()
     }
 }
