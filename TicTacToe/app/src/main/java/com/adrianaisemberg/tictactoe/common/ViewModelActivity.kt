@@ -5,6 +5,7 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.adrianaisemberg.tictactoe.BR
 import javax.inject.Inject
 
 abstract class ViewModelActivity<
@@ -33,7 +34,7 @@ abstract class ViewModelActivity<
             layoutId
         ).apply {
             lifecycleOwner = this@ViewModelActivity
-//            setVariable(BR.viewModel, viewModel)
+            setVariable(BR.viewModel, viewModel)
         }
 
         onViewModelCreated()
