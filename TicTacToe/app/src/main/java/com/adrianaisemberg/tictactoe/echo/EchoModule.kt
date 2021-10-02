@@ -1,5 +1,6 @@
 package com.adrianaisemberg.tictactoe.echo
 
+import com.adrianaisemberg.tictactoe.api.TicTacToeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -10,5 +11,9 @@ import dagger.hilt.android.components.ViewComponent
 object EchoModule {
 
     @Provides
-    fun provideEchoViewModel(): EchoViewModel = EchoViewModel()
+    fun provideEchoViewModel(
+        ticTacToeService: TicTacToeService,
+    ): EchoViewModel = EchoViewModel(
+        service = ticTacToeService,
+    )
 }
