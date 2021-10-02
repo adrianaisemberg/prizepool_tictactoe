@@ -12,20 +12,18 @@ interface TicTacToeService {
     fun getEcho(): Call<String>
 
     @GET("/echo/auth")
-    fun getEchoAuth(@Header("api-key") apiKey: String): Call<String>
+    fun getEchoAuth(): Call<String>
 
     @POST("/game")
-    fun postGame(@Header("api-key") apiKey: String): Call<GameResponse>
+    fun postGame(): Call<GameResponse>
 
     @GET("/game/{game_id}")
     fun getGame(
-        @Header("api-key") apiKey: String,
         @Path("game_id") gameId: String,
     ): Call<GameResponse>
 
     @PUT("/game/{game_id}/move")
     fun putGameMove(
-        @Header("api-key") apiKey: String,
         @Path("game_id") gameId: String,
         @Query("x") x: Int,
         @Query("y") y: Int,
