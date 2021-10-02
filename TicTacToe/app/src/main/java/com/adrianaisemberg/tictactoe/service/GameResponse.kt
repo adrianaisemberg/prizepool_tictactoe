@@ -1,5 +1,6 @@
 package com.adrianaisemberg.tictactoe.service
 
+import com.adrianaisemberg.tictactoe.R
 import com.google.gson.annotations.SerializedName
 
 data class Game(
@@ -77,14 +78,14 @@ enum class Status {
     Complete,
 }
 
-enum class Tile {
+enum class Tile(val drawableResId: Int) {
 
     @SerializedName("EMPTY")
-    Empty,
+    Empty(R.drawable.ic_x),
 
     @SerializedName("X")
-    X,
+    X(R.drawable.ic_x),
 
     @SerializedName("O")
-    O,
+    O(R.drawable.ic_o),
 }

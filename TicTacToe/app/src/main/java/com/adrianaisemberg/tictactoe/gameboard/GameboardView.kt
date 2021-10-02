@@ -40,7 +40,7 @@ class GameboardView @JvmOverloads constructor(
             binding.boardContainer.addView(rowLayout)
 
             cells.forEach { cell ->
-                rowLayout.addView(GameboardCellView(context))
+                rowLayout.addView(GameboardCellView(context).apply { setCell(cell) })
             }
         }
     }

@@ -5,6 +5,7 @@ import android.util.AttributeSet
 import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.common.ViewModelView
 import com.adrianaisemberg.tictactoe.databinding.ViewGameboardCellBinding
+import com.adrianaisemberg.tictactoe.service.GameboardCell
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,4 +18,10 @@ class GameboardCellView @JvmOverloads constructor(
     context = context,
     attrs = attrs,
     defStyleAttr = defStyleAttr,
-)
+) {
+    fun setCell(cell: GameboardCell) {
+        viewModel.cell = cell
+
+        binding.cellImage.setImageResource(cell.tile.drawableResId)
+    }
+}
