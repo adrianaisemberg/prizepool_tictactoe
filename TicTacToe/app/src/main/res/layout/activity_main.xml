@@ -8,18 +8,31 @@
             type="com.adrianaisemberg.tictactoe.MainActivityViewModel" />
     </data>
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <com.adrianaisemberg.tictactoe.echo.EchoView
+        <LinearLayout
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-        <com.adrianaisemberg.tictactoe.echo.EchoAuthView
+            <com.adrianaisemberg.tictactoe.echo.EchoView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.adrianaisemberg.tictactoe.echo.EchoAuthView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless.Colored"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="16dp"
+            android:onClick="@{() -> viewModel.startNewGame()}"
+            android:text="@string/new_game" />
+    </RelativeLayout>
 </layout>
