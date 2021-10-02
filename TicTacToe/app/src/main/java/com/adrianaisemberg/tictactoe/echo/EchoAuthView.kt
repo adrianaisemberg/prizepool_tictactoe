@@ -8,11 +8,11 @@ import com.adrianaisemberg.tictactoe.databinding.ViewEchoBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class EchoView @JvmOverloads constructor(
+class EchoAuthView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ViewModelView<EchoViewModel, ViewEchoBinding>(
+) : ViewModelView<EchoAuthViewModel, ViewEchoBinding>(
     layoutId = R.layout.view_echo,
     context = context,
     attrs = attrs,

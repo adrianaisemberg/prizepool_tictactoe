@@ -1,12 +1,12 @@
 package com.adrianaisemberg.tictactoe.echo
 
 import androidx.lifecycle.MutableLiveData
+import com.adrianaisemberg.tictactoe.common.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
-import com.adrianaisemberg.tictactoe.common.ViewViewModel
 import com.adrianaisemberg.tictactoe.utils.async_io
 
-class EchoViewModel(
+open class EchoViewModel(
     private val service: TicTacToeService,
 ) : ViewViewModel {
 
@@ -18,17 +18,27 @@ class EchoViewModel(
         beginEchoCheck()
     }
 
-    private fun beginEchoCheck() {
+    protected open fun beginEchoCheck() {
+        setLoading()
         async_io {
             service.getEcho().enqueue(
                 onResponse = {
-                    statusColor.value = COLOR_SUCCESS
+                    setSuccess()
                 },
                 onFailure = { t ->
-                    statusColor.value = COLOR_FAIL
+                    // TODO: handle exception
+                    setFailure()
                 }
             )
         }
+    }
+
+    protected fun setSuccess() = setStatusColor(COLOR_SUCCESS)
+    protected fun setFailure() = setStatusColor(COLOR_SUCCESS)
+    protected fun setLoading() = setStatusColor(COLOR_SUCCESS)
+
+    private fun setStatusColor(color: Int) {
+        statusColor.value = color
     }
 
     companion object {

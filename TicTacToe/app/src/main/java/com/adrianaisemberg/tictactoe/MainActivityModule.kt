@@ -1,8 +1,8 @@
 package com.adrianaisemberg.tictactoe
 
 import android.app.Activity
+import com.adrianaisemberg.tictactoe.common.Common
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
-import com.adrianaisemberg.tictactoe.settings.Settings
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,11 +17,11 @@ object MainActivityModule {
     fun provideMainActivityViewModel(
         activity: Activity,
         service: TicTacToeService,
-        settings: Settings,
+        common: Common,
     ): MainActivityViewModel =
         MainActivityViewModel(
             activity = activity,
             service = service,
-            settings = settings,
+            common = common,
         )
 }

@@ -8,13 +8,18 @@
             type="com.adrianaisemberg.tictactoe.MainActivityViewModel" />
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.adrianaisemberg.tictactoe.echo.EchoView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
-    </RelativeLayout>
+        <com.adrianaisemberg.tictactoe.echo.EchoAuthView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
 </layout>
