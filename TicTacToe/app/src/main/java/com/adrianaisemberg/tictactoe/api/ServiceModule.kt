@@ -13,6 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
 
+    // TODO: put in config
     private const val URL = "http://192.168.86.40:5000/"
 
     @Provides
