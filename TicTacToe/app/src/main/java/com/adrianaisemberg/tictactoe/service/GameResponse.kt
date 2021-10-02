@@ -81,7 +81,7 @@ enum class Status {
 enum class Tile(val drawableResId: Int) {
 
     @SerializedName("EMPTY")
-    Empty(R.drawable.ic_x),
+    Empty(R.drawable.ic_empty),
 
     @SerializedName("X")
     X(R.drawable.ic_x),

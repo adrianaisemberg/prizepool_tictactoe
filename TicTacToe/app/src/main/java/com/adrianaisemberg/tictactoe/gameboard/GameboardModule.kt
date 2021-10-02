@@ -16,7 +16,4 @@ object GameboardModule {
     ): GameboardViewModel = GameboardViewModel(
         service = service,
     )
-
-    @Provides
-    fun provideGameboardCellViewModel(): GameboardCellViewModel = GameboardCellViewModel()
 }

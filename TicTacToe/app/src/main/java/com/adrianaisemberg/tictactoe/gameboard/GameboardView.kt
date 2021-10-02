@@ -40,7 +40,10 @@ class GameboardView @JvmOverloads constructor(
             binding.boardContainer.addView(rowLayout)
 
             cells.forEach { cell ->
-                rowLayout.addView(GameboardCellView(context).apply { setCell(cell) })
+                val cellView = GameboardCellView(context).apply {
+                    setViewModel(GameboardCellViewModel(viewModel.service, game, cell))
+                }
+                rowLayout.addView(cellView)
             }
         }
     }
