@@ -6,15 +6,15 @@ import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
 import com.adrianaisemberg.tictactoe.utils.async_io
 import com.adrianaisemberg.tictactoe.utils.async_ui
+import com.adrianaisemberg.tictactoe.utils.scheduleNowAtFixedRate
 import java.util.*
-import java.util.concurrent.ScheduledThreadPoolExecutor
-import java.util.concurrent.TimeUnit
 
 open class EchoViewModel(
     private val service: TicTacToeService,
 ) : ViewViewModel {
 
     val statusColor = MutableLiveData(COLOR_LOADING)
+    private val timer = Timer()
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -23,17 +23,9 @@ open class EchoViewModel(
     }
 
     private fun loopEchoCheck() {
-        val timer = Timer()
-        timer.scheduleAtFixedRate(object : TimerTask() {
-            override fun run() {
-                beginEchoCheck()
-            }
-
-        }, 0L, 1000L)
-/*
-        val executor = ScheduledThreadPoolExecutor(1)
-        executor.scheduleAtFixedRate(::beginEchoCheck, 0L, 1L, TimeUnit.SECONDS)
-*/
+        timer.scheduleNowAtFixedRate(1000L) {
+            beginEchoCheck()
+        }
     }
 
     protected open fun beginEchoCheck() {
@@ -49,6 +41,12 @@ open class EchoViewModel(
                 }
             )
         }
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+
+        timer.cancel()
     }
 
     protected fun setSuccess() = setStatusColor(COLOR_SUCCESS)

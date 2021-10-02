@@ -2,7 +2,7 @@ package com.adrianaisemberg.tictactoe.service
 
 import com.google.gson.annotations.SerializedName
 
-data class GameResponse(
+data class Game(
 
     /**
      * Game ID that will be utilized for interacting with the created game
@@ -26,22 +26,22 @@ data class GameResponse(
      * List of all the tiles of the gameboard.  See GameboardResponse Object
      */
     @SerializedName("gameboard")
-    var gameboard: List<GameboardResponse>,
+    var gameboard: List<GameboardCell>,
 )
 
-data class GameboardResponse(
+data class GameboardCell(
 
     /**
      * x coordinate of tile as integer
      */
     @SerializedName("x")
-    var x: String,
+    var x: Int,
 
     /**
      * y coordinate of tile as integer
      */
     @SerializedName("y")
-    var y: String,
+    var y: Int,
 
     /**
      * EMPTY, X, O

@@ -15,12 +15,12 @@ interface TicTacToeService {
     fun getEchoAuth(): Call<String>
 
     @POST("/game")
-    fun postGame(): Call<GameResponse>
+    fun postGame(): Call<Game>
 
     @GET("/game/{game_id}")
     fun getGame(
         @Path("game_id") gameId: String,
-    ): Call<GameResponse>
+    ): Call<Game>
 
     @PUT("/game/{game_id}/move")
     fun putGameMove(
@@ -28,5 +28,5 @@ interface TicTacToeService {
         @Query("x") x: Int,
         @Query("y") y: Int,
         @Query("tile") tile: Tile,
-    ): Call<GameResponse>
+    ): Call<Game>
 }

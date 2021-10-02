@@ -5,7 +5,7 @@ import android.os.Bundle
 import androidx.lifecycle.MutableLiveData
 import com.adrianaisemberg.tictactoe.common.ActivityViewModel
 import com.adrianaisemberg.tictactoe.common.Common
-import com.adrianaisemberg.tictactoe.service.GameResponse
+import com.adrianaisemberg.tictactoe.service.Game
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
 import com.adrianaisemberg.tictactoe.utils.async_io
@@ -16,7 +16,7 @@ class MainActivityViewModel(
     private val common: Common,
 ) : ActivityViewModel(activity) {
 
-    val currentGame = MutableLiveData<GameResponse>()
+    val game = MutableLiveData<Game>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +53,7 @@ class MainActivityViewModel(
             service.getGame(lastGameId).enqueue(
                 onResponse = { response ->
                     val body = response.body()
-                    currentGame.value = body
+                    game.value = body
                 },
                 onFailure = { t ->
 
@@ -68,7 +68,7 @@ class MainActivityViewModel(
                 onResponse = { response ->
                     val body = response.body()
                     common.settings.lastGameId = body?.gameId
-                    currentGame.value = body
+                    game.value = body
                 },
                 onFailure = { t ->
 
