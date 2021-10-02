@@ -1,4 +1,4 @@
-package com.adrianaisemberg.tictactoe.api
+package com.adrianaisemberg.tictactoe.service
 
 import com.adrianaisemberg.tictactoe.utils.ActionOf
 import retrofit2.Call

@@ -1,4 +1,4 @@
-package com.adrianaisemberg.tictactoe.api
+package com.adrianaisemberg.tictactoe.service
 
 import com.google.gson.GsonBuilder
 import dagger.Module

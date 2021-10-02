@@ -1,6 +1,6 @@
 package com.adrianaisemberg.tictactoe.echo
 
-import com.adrianaisemberg.tictactoe.api.TicTacToeService
+import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
