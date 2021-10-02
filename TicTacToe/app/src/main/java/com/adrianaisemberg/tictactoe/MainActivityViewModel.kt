@@ -48,6 +48,7 @@ class MainActivityViewModel(
     private fun loadCurrentGame() {
         val lastGameId = common.settings.lastGameId
         if (lastGameId.isNullOrEmpty()) {
+            startNewGame()
             return
         }
 
