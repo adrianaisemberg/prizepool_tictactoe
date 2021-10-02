@@ -10,14 +10,11 @@ class GameboardViewModel(
     val service: TicTacToeService,
 ) : ViewViewModel {
 
-    var game: Game? = null
-
     val background = Drawables.boardLines()
 
     lateinit var gameUpdateListener: GameUpdateListener
 
-    fun onGameUpdated() {
-        val game = this.game ?: return
+    fun onGameUpdated(game: Game) {
         gameUpdateListener.onGameUpdated(game)
     }
 }

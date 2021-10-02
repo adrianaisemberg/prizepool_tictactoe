@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import androidx.databinding.BindingAdapter
 import com.adrianaisemberg.tictactoe.GameUpdateListener
 import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.common.ViewModelView
@@ -23,20 +24,16 @@ class GameboardView @JvmOverloads constructor(
     attrs = attrs,
     defStyleAttr = defStyleAttr,
 ) {
-    fun setGame(game: Game?) {
-        viewModel.game = game
-        createBoard()
-        viewModel.onGameUpdated()
+    fun setOnGameUpdatedListener(listener: GameUpdateListener?) {
+        viewModel.gameUpdateListener = listener ?: return
     }
 
-    fun setOnGameUpdated(listener: GameUpdateListener) {
-        viewModel.gameUpdateListener = listener
-        viewModel.onGameUpdated()
+    fun onGameUpdated(game: Game) {
+        viewModel.onGameUpdated(game)
     }
 
     @SuppressLint("InflateParams")
-    private fun createBoard() {
-        val game = viewModel.game ?: return
+    fun createBoard(game: Game) {
         val rows = game.gameboard.groupBy { cell -> cell.y }
         val layoutInflater = context.layoutInflater()
 
@@ -51,9 +48,9 @@ class GameboardView @JvmOverloads constructor(
             cells.forEach { cell ->
                 rowLayout.addView(GameboardCellView(context).apply {
                     setViewModel(
-                        GameboardCellViewModel(
+                        game = game,
+                        viewModel = GameboardCellViewModel(
                             service = viewModel.service,
-                            game = game,
                             cell = cell,
                             onGameUpdated = viewModel::onGameUpdated,
                         )
@@ -61,5 +58,14 @@ class GameboardView @JvmOverloads constructor(
                 })
             }
         }
+    }
+}
+
+@BindingAdapter("game", "onGameUpdated")
+fun GameboardView.setGameAndListener(game: Game?, onGameUpdated: GameUpdateListener?) {
+    if (game != null && onGameUpdated != null) {
+        createBoard(game)
+        setOnGameUpdatedListener(onGameUpdated)
+        onGameUpdated(game)
     }
 }

@@ -7,6 +7,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.LifecycleOwner
 import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.databinding.ViewGameboardCellBinding
+import com.adrianaisemberg.tictactoe.service.Game
 import com.adrianaisemberg.tictactoe.utils.activity
 import com.adrianaisemberg.tictactoe.utils.layoutInflater
 import dagger.hilt.android.AndroidEntryPoint
@@ -20,10 +21,10 @@ class GameboardCellView @JvmOverloads constructor(
 
     private lateinit var binding: ViewGameboardCellBinding
 
-    fun setViewModel(viewModel: GameboardCellViewModel) {
+    fun setViewModel(game: Game, viewModel: GameboardCellViewModel) {
         initDataBinding()
         binding.viewModel = viewModel
-        setOnClickListener { viewModel.onCellClicked() }
+        setOnClickListener { viewModel.onCellClicked(game) }
     }
 
     private fun initDataBinding() {
