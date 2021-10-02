@@ -1,11 +1,9 @@
 package com.adrianaisemberg.tictactoe
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
+import com.adrianaisemberg.tictactoe.common.ViewModelActivity
+import com.adrianaisemberg.tictactoe.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class MainActivity : AppCompatActivity() {
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-    }
-}
+@AndroidEntryPoint
+class MainActivity :
+    ViewModelActivity<MainActivityViewModel, ActivityMainBinding>(R.layout.activity_main)
