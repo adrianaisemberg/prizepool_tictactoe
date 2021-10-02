@@ -34,7 +34,15 @@
             android:layout_above="@id/button_new_game"
             android:layout_below="@id/connectivity_indicator"
             android:layout_centerInParent="true"
-            app:game="@{viewModel.game}" />
+            app:game="@{viewModel.game}"
+            app:onGameUpdated="@{viewModel}" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/button_new_game"
+            android:layout_centerHorizontal="true"
+            android:text="@{viewModel.gameStatusMessage}" />
 
         <Button
             android:id="@+id/button_new_game"

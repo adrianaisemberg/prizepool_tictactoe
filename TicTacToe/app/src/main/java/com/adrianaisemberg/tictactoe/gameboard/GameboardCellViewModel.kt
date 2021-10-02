@@ -46,6 +46,8 @@ class GameboardCellViewModel(
         val updatedCell =
             game.gameboard.firstOrNull { it.x == cell.x && it.y == cell.y } ?: return
 
+        this.game.winner = game.winner
+        this.game.status = game.status
         cell.tile = updatedCell.tile
         image.value = updatedCell.tile.drawableResId
 

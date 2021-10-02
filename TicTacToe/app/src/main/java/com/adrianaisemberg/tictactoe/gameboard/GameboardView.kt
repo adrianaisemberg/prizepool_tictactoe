@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
+import com.adrianaisemberg.tictactoe.GameUpdateListener
 import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.common.ViewModelView
 import com.adrianaisemberg.tictactoe.databinding.ViewGameboardBinding
@@ -25,6 +26,12 @@ class GameboardView @JvmOverloads constructor(
     fun setGame(game: Game?) {
         viewModel.game = game
         createBoard()
+        viewModel.onGameUpdated()
+    }
+
+    fun setOnGameUpdated(listener: GameUpdateListener) {
+        viewModel.gameUpdateListener = listener
+        viewModel.onGameUpdated()
     }
 
     @SuppressLint("InflateParams")
