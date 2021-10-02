@@ -3,7 +3,5 @@
 package com.adrianaisemberg.tictactoe.settings
 
 enum class SettingKey {
-    _Any,
-
     AuthenticationKey,
 }

@@ -4,10 +4,9 @@ interface SettingsBase {
     fun <T> getValue(key: SettingKey, defaultValue: T): T
     fun <T> setValue(key: SettingKey, value: T)
 
-    fun addListener(key: SettingKey, invokeNow: Boolean = true, listener: SettingsChangedListener)
+    fun addListener(key: SettingKey, listener: SettingsChangedListener)
     fun addListener(
         keys: Array<SettingKey>,
-        invokeNow: Boolean = true,
         listener: SettingsChangedListener
     )
 
@@ -24,21 +23,17 @@ abstract class SettingsBaseImpl(private val settingsIO: SettingsIO) : SettingsBa
 
     override fun addListener(
         key: SettingKey,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
     ) = settingsIO.addListener(
         key,
-        invokeNow,
         listener
     )
 
     override fun addListener(
         keys: Array<SettingKey>,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
     ) = settingsIO.addListener(
         keys,
-        invokeNow,
         listener
     )
 

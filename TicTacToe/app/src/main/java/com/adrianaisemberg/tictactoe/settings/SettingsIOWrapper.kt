@@ -33,21 +33,15 @@ class SettingsIOWrapper(
 
     override fun addListener(
         key: SettingKey,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
-    ) = encryptedSettingsIO.addListener(key, invokeNow, listener)
+    ) = encryptedSettingsIO.addListener(key, listener)
 
     override fun addListener(
         keys: Array<SettingKey>,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
     ) {
         keys.forEach {
-            addListener(it, false, listener)
-        }
-
-        if (invokeNow) {
-            listener.onSettingsChanged(SettingKey._Any)
+            addListener(it, listener)
         }
     }
 

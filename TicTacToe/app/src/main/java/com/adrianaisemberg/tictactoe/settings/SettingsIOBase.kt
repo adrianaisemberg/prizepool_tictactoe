@@ -23,27 +23,17 @@ open class SettingsIOBase : SettingsIO {
 
     override fun addListener(
         key: SettingKey,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
     ) {
         keyListeners[key] = listener
-
-        if (invokeNow) {
-            listener.onSettingsChanged(key)
-        }
     }
 
     override fun addListener(
         keys: Array<SettingKey>,
-        invokeNow: Boolean,
         listener: SettingsChangedListener
     ) {
         keys.forEach {
-            addListener(it, false, listener)
-        }
-
-        if (invokeNow) {
-            listener.onSettingsChanged(SettingKey._Any)
+            addListener(it, listener)
         }
     }
 
