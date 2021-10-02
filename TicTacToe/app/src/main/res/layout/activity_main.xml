@@ -29,10 +29,11 @@
         </LinearLayout>
 
         <com.adrianaisemberg.tictactoe.gameboard.GameboardView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/button_new_game"
             android:layout_below="@id/connectivity_indicator"
+            android:layout_centerInParent="true"
             app:game="@{viewModel.game}" />
 
         <Button

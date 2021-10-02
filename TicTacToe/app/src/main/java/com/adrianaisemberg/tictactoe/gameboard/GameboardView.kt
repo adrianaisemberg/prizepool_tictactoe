@@ -1,5 +1,6 @@
 package com.adrianaisemberg.tictactoe.gameboard
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.util.AttributeSet
 import android.widget.LinearLayout
@@ -7,6 +8,7 @@ import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.common.ViewModelView
 import com.adrianaisemberg.tictactoe.databinding.ViewGameboardBinding
 import com.adrianaisemberg.tictactoe.service.Game
+import com.adrianaisemberg.tictactoe.utils.layoutInflater
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -25,21 +27,20 @@ class GameboardView @JvmOverloads constructor(
         createBoard()
     }
 
+    @SuppressLint("InflateParams")
     private fun createBoard() {
         val game = viewModel.game ?: return
         val rows = game.gameboard.groupBy { cell -> cell.y }
+        val layoutInflater = context.layoutInflater()
 
-        val layout = LinearLayout(context).apply { orientation = LinearLayout.VERTICAL }
-        binding.boardContainer.addView(layout)
+        rows.values.forEach { cells ->
+            val rowLayout =
+                layoutInflater.inflate(R.layout.view_gameboard_row, null) as LinearLayout
 
-        rows.keys.forEach { y ->
-            val cells = rows[y] ?: return
-            val horizontalLayout =
-                LinearLayout(context).apply { orientation = LinearLayout.HORIZONTAL }
-            layout.addView(horizontalLayout)
+            binding.boardContainer.addView(rowLayout)
 
             cells.forEach { cell ->
-                horizontalLayout.addView(GameboardCellView(context))
+                rowLayout.addView(GameboardCellView(context))
             }
         }
     }
