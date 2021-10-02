@@ -26,7 +26,7 @@ class EchoViewModel(
             service.getEcho().enqueue(object : Callback<String> {
 
                 // TODO: create extension for this crap
-                
+
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     async_ui {
                         echoResponse.value = response.body()

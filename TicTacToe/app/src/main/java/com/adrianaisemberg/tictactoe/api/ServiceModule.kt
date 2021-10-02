@@ -1,5 +1,6 @@
 package com.adrianaisemberg.tictactoe.api
 
+import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -12,12 +13,19 @@ import retrofit2.converter.gson.GsonConverterFactory
 @InstallIn(SingletonComponent::class)
 object ServiceModule {
 
+    private const val URL = "http://192.168.86.40:5000/"
+
     @Provides
     fun provideRetrofit(): Retrofit {
         val client = OkHttpClient.Builder().build()
+
+        val gson = GsonBuilder()
+            .setLenient()
+            .create()
+
         return Retrofit.Builder()
-            .baseUrl("127.0.0.1:5000")
-            .addConverterFactory(GsonConverterFactory.create())
+            .baseUrl(URL)
+            .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
     }
