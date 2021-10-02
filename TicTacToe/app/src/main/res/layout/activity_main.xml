@@ -14,9 +14,9 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/connectivity_indicator"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal">
 
             <com.adrianaisemberg.tictactoe.echo.EchoView
@@ -29,32 +29,36 @@
         </LinearLayout>
 
         <com.adrianaisemberg.tictactoe.gameboard.GameboardView
+            android:id="@+id/game_board"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/button_new_game"
-            android:layout_below="@id/connectivity_indicator"
             android:layout_centerInParent="true"
-            android:layout_marginTop="72dp"
             app:game="@{viewModel.game}"
             app:onGameUpdated="@{viewModel}" />
 
-        <TextView
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_above="@id/button_new_game"
+            android:layout_below="@id/game_board"
             android:layout_centerHorizontal="true"
-            android:text="@{viewModel.gameStatusMessage}"
-            android:textSize="24sp" />
+            android:layout_marginTop="32dp"
+            android:gravity="center_horizontal"
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/button_new_game"
-            style="@style/Widget.AppCompat.Button.Colored"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_margin="16dp"
-            android:onClick="@{() -> viewModel.startNewGame()}"
-            android:text="@string/new_game" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{viewModel.gameStatusMessage}"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/button_new_game"
+                style="@style/Widget.AppCompat.Button.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:onClick="@{() -> viewModel.startNewGame()}"
+                android:text="@string/new_game" />
+        </LinearLayout>
     </RelativeLayout>
 </layout>

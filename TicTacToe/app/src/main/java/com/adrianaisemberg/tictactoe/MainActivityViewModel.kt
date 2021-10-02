@@ -33,15 +33,10 @@ class MainActivityViewModel(
         }
 
         async_io {
-            service.getKey().enqueue(
-                onResponse = { response ->
-                    common.settings.authenticationKey = response.body()
-                    loadCurrentGame()
-                },
-                onFailure = { t ->
-
-                }
-            )
+            service.getKey().enqueue { response ->
+                common.settings.authenticationKey = response.body()
+                loadCurrentGame()
+            }
         }
     }
 
@@ -53,30 +48,20 @@ class MainActivityViewModel(
         }
 
         async_io {
-            service.getGame(lastGameId).enqueue(
-                onResponse = { response ->
-                    val body = response.body()
-                    game.value = body
-                },
-                onFailure = { t ->
-
-                }
-            )
+            service.getGame(lastGameId).enqueue { response ->
+                val body = response.body()
+                game.value = body
+            }
         }
     }
 
     fun startNewGame() {
         async_io {
-            service.postGame().enqueue(
-                onResponse = { response ->
-                    val body = response.body()
-                    common.settings.lastGameId = body?.gameId
-                    game.value = body
-                },
-                onFailure = { t ->
-
-                }
-            )
+            service.postGame().enqueue { response ->
+                val body = response.body()
+                common.settings.lastGameId = body?.gameId
+                game.value = body
+            }
         }
     }
 

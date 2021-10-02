@@ -15,8 +15,7 @@ class EchoAuthViewModel(
                 onResponse = {
                     super.setSuccess()
                 },
-                onFailure = { t ->
-                    // TODO: handle exception
+                onFailure = {
                     super.setFailure()
                 }
             )

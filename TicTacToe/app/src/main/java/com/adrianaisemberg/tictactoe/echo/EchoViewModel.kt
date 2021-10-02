@@ -36,8 +36,7 @@ open class EchoViewModel(
                 onResponse = {
                     setSuccess()
                 },
-                onFailure = { t ->
-                    // TODO: handle exception
+                onFailure = {
                     setFailure()
                 }
             )

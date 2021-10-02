@@ -6,8 +6,12 @@ import retrofit2.Callback
 import retrofit2.Response
 
 fun <T> Call<T>.enqueue(
-    onResponse: ActionOf<Response<T>> = {},
-    onFailure: ActionOf<Throwable> = {},
+    onResponse: ActionOf<Response<T>>,
+) = enqueue(onResponse) {}
+
+fun <T> Call<T>.enqueue(
+    onResponse: ActionOf<Response<T>>,
+    onFailure: ActionOf<Throwable>,
 ) {
     this.enqueue(object : Callback<T> {
         override fun onResponse(call: Call<T>, response: Response<T>) {

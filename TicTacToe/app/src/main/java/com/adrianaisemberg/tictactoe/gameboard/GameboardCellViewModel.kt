@@ -29,15 +29,10 @@ class GameboardCellViewModel(
                 x = cell.x,
                 y = cell.y,
                 tile = tile,
-            ).enqueue(
-                onResponse = { response ->
-                    val updatedGame = response.body() ?: return@enqueue
-                    refreshCell(updatedGame)
-                },
-                onFailure = { t ->
-
-                }
-            )
+            ).enqueue { response ->
+                val updatedGame = response.body() ?: return@enqueue
+                refreshCell(updatedGame)
+            }
         }
     }
 
