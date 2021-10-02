@@ -1,4 +1,4 @@
-package com.adrianaisemberg.tictactoe
+package com.adrianaisemberg.tictactoe.utils
 
 import android.util.Log
 import dagger.Module

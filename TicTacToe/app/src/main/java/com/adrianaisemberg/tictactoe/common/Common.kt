@@ -1,6 +1,7 @@
-package com.adrianaisemberg.tictactoe
+package com.adrianaisemberg.tictactoe.common
 
 import com.adrianaisemberg.tictactoe.settings.Settings
+import com.adrianaisemberg.tictactoe.utils.Logger
 import com.adrianaisemberg.tictactoe.utils.ResourcesReader
 
 interface Common {

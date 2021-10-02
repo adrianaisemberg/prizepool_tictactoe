@@ -1,4 +1,4 @@
-package com.adrianaisemberg.tictactoe
+package com.adrianaisemberg.tictactoe.common
 
 import android.app.Activity
 import android.os.Bundle
