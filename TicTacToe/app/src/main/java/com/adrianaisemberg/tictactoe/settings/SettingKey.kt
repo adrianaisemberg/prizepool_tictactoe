@@ -2,6 +2,8 @@
 
 package com.adrianaisemberg.tictactoe.settings
 
-enum class SettingKey(val encrypt: Boolean = false) {
+enum class SettingKey {
     _Any,
+
+    AuthenticationKey,
 }

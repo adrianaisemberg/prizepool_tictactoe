@@ -22,7 +22,6 @@ object SettingsModule {
         SettingsImpl(
             resourcesReader = resourcesReader,
             settingsIO = SettingsIOWrapper(
-                safeSettingsIO = SafeSettingsIOImpl(context),
                 encryptedSettingsIO = EncryptedSettingsIOImpl(context),
             ),
         )
