@@ -2,6 +2,7 @@ package com.adrianaisemberg.tictactoe.utils
 
 import android.app.Activity
 import android.content.ContextWrapper
+import android.graphics.Paint
 import android.view.View
 
 fun View.activity(): Activity? {
@@ -14,3 +15,5 @@ fun View.activity(): Activity? {
     }
     return null
 }
+
+fun createPaint() = Paint().apply { isAntiAlias = true }
