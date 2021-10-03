@@ -12,9 +12,6 @@ interface RetrofitBuilder {
     fun build(): Retrofit
 }
 
-// TODO: put in config
-private const val URL = "http://192.168.86.40:5000/"
-
 class RetrofitBuilderImpl(private val settings: Settings) : RetrofitBuilder {
 
     /**
@@ -50,5 +47,6 @@ class RetrofitBuilderImpl(private val settings: Settings) : RetrofitBuilder {
 
     companion object {
         private const val API_KEY = "api-key"
+        private const val URL = "http://192.168.86.40:5000/"
     }
 }
