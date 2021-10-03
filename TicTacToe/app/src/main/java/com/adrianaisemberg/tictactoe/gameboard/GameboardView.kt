@@ -34,6 +34,7 @@ class GameboardView @JvmOverloads constructor(
 
     @SuppressLint("InflateParams")
     fun createBoard(game: Game) {
+        // group by y to create a map of rows (the board response is a flat list)
         val rows = game.gameboard.groupBy { cell -> cell.y }
         val layoutInflater = context.layoutInflater()
 
@@ -45,6 +46,8 @@ class GameboardView @JvmOverloads constructor(
 
             binding.boardContainer.addView(rowLayout)
 
+            // dynamically create the board and all cells
+            // this allows to scale to a larger board if the backend supports it
             cells.forEach { cell ->
                 rowLayout.addView(GameboardCellView(context).apply {
                     setViewModel(

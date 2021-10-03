@@ -28,13 +28,18 @@ class MainActivityViewModel(
         loadKeyAndCurrentGame()
     }
 
+    /**
+     * either fetch a new auth-key or load the stored one and start a new game
+     */
     private fun loadKeyAndCurrentGame() {
+        // if there's an auth key - load the current game
         if (!settings.authenticationKey.isNullOrEmpty()) {
             loadCurrentGame()
             return
         }
 
         async_io {
+            // fetch an auth key and store locally
             service.getKey().enqueue { response ->
                 settings.authenticationKey = response.body()
                 loadCurrentGame()
@@ -42,7 +47,11 @@ class MainActivityViewModel(
         }
     }
 
+    /**
+     * loads the current game from the backend
+     */
     private fun loadCurrentGame() {
+        // if there's no active game - start a new one
         val lastGameId = settings.lastGameId
         if (lastGameId.isNullOrEmpty()) {
             startNewGame()
@@ -50,6 +59,7 @@ class MainActivityViewModel(
         }
 
         async_io {
+            // fetch the current active game and load it
             service.getGame(lastGameId).enqueue { response ->
                 val body = response.body()
                 game.value = body
@@ -57,6 +67,9 @@ class MainActivityViewModel(
         }
     }
 
+    /**
+     * starts a new game
+     */
     fun startNewGame() {
         async_io {
             service.postGame().enqueue { response ->
@@ -67,6 +80,9 @@ class MainActivityViewModel(
         }
     }
 
+    /**
+     * the game was updated - check for a winner
+     */
     override fun onGameUpdated(game: Game) {
         gameStatusMessage.value = when (game.winner) {
             Winner.None -> ""

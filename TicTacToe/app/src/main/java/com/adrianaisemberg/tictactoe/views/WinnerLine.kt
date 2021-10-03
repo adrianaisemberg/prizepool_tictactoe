@@ -41,6 +41,9 @@ class WinnerLine @JvmOverloads constructor(
         }
     }
 
+    /**
+     * check if the cells in this list are all equal and not empty
+     */
     private fun areCellsEqual(cells: List<GameboardCell>): Boolean {
         if (cells.isEmpty()) return false
         val tile = cells[0].tile
@@ -50,16 +53,14 @@ class WinnerLine @JvmOverloads constructor(
 
     override fun onDraw(canvas: Canvas?) {
         super.onDraw(canvas)
-        if (canvas == null) {
-            return
-        }
-
+        if (canvas == null) return
         val game = this.game ?: return
 
         var winnerFound = false
         val rowHeight = height / gridSize
         val colWidth = width / gridSize
 
+        // check all rows, columns and 2 diagonals for winner
         if (!winnerFound) {
             val rows = game.gameboard.groupBy { it.y }
             val winnerRow = rows.values.firstOrNull { areCellsEqual(it) }
@@ -85,6 +86,7 @@ class WinnerLine @JvmOverloads constructor(
         }
 
         if (!winnerFound) {
+            // cells in the first diagonal all have the same x/y coordinates
             val diag1 = game.gameboard.filter { it.x == it.y }
             if (areCellsEqual(diag1)) {
                 lineStartX = colWidth / EDGE_FRACTION
@@ -96,6 +98,7 @@ class WinnerLine @JvmOverloads constructor(
         }
 
         if (!winnerFound) {
+            // cells in the second diagonal all have their x and y coordinates sum as the grid size minus one
             val diag2 = game.gameboard.filter { it.x + it.y == gridSize - 1 }
             if (areCellsEqual(diag2)) {
                 lineStartX = width - colWidth / EDGE_FRACTION

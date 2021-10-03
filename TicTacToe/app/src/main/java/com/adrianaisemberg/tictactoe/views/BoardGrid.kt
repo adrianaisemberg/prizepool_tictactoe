@@ -35,6 +35,7 @@ class BoardGrid @JvmOverloads constructor(
         val rowHeight = height / gridSize
         val colWidth = width / gridSize
 
+        // draw horizontal lines
         for (i in 1..count) {
             val startX = 0F
             val endX = width.toFloat()
@@ -42,6 +43,7 @@ class BoardGrid @JvmOverloads constructor(
             canvas.drawLine(startX, y, endX, y, paint)
         }
 
+        // draw vertical lines
         for (i in 1..count) {
             val startY = 0F
             val endY = height.toFloat()

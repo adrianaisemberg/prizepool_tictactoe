@@ -15,12 +15,16 @@ class GameboardCellViewModel(
     val image = MutableLiveData(cell.tile.drawableResId)
 
     fun onCellClicked(game: Game) {
+        // if already clicked
         if (cell.tile != Tile.Empty) return
+
+        // if the game is over (hen there is a winner)
         if (game.winner != Winner.None) return
 
+        // check which tile is next based on the number of existing tiles
+        // if the counts are same - x moves (x is first)
         val xcount = game.gameboard.count { it.tile == Tile.X }
         val ocount = game.gameboard.count { it.tile == Tile.O }
-
         val tile = if (xcount <= ocount) Tile.X else Tile.O
 
         async_io {
@@ -37,12 +41,15 @@ class GameboardCellViewModel(
     }
 
     private fun refreshCell(game: Game) {
+        // find the updated cell based on the index
         val updatedCell =
             game.gameboard.firstOrNull { it.x == cell.x && it.y == cell.y } ?: return
 
+        // update current cell and bound ui
         cell.tile = updatedCell.tile
         image.value = updatedCell.tile.drawableResId
 
+        // update overall game listener (in case there's aa winner)
         onGameUpdated.invoke(game)
     }
 }

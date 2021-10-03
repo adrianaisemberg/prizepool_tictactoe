@@ -41,27 +41,14 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.core:core-ktx:1.6.0'
     implementation 'androidx.appcompat:appcompat:1.3.1'
-    implementation 'androidx.constraintlayout:constraintlayout:2.1.1'
-    implementation 'androidx.cardview:cardview:1.0.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.preference:preference-ktx:1.1.1'
-
-    implementation 'com.google.code.gson:gson:2.8.8'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2-native-mt'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2-native-mt'
 
-    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
-
-    // stetho debugger
-    implementation 'com.facebook.stetho:stetho:1.6.0'
-
     // encrypted shared preferences
     implementation "androidx.security:security-crypto:1.1.0-alpha03"
-
-    // pandora
-    debugImplementation 'com.github.whataa:pandora:androidx_v2.1.0'
 
     // retrofit
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -69,21 +56,20 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-scalars:2.9.0'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
     implementation 'com.squareup.okhttp3:logging-interceptor:4.9.1'
-}
+    implementation 'com.google.code.gson:gson:2.8.8'
 
-dependencies {
+    // dagger and hilt for dependency-injection
     implementation "com.google.dagger:dagger:2.38.1"
-    kapt "com.google.dagger:dagger-compiler:2.38.1"
-}
-
-dependencies {
     implementation 'com.google.dagger:hilt-android:2.38.1'
+    kapt "com.google.dagger:dagger-compiler:2.38.1"
     kapt 'com.google.dagger:hilt-android-compiler:2.38.1'
 }
 
 dependencies {
     testImplementation 'junit:junit:4.13.2'
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
 
     implementation 'com.google.firebase:firebase-analytics:19.0.1'
 }

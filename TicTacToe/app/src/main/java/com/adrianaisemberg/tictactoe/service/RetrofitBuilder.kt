@@ -17,6 +17,10 @@ private const val URL = "http://192.168.86.40:5000/"
 
 class RetrofitBuilderImpl(private val settings: Settings) : RetrofitBuilder {
 
+    /**
+     * build a retrofit by setting a logger and a headers interceptor.
+     * also - add converters to support both JSON and scalar responses
+     */
     override fun build(): Retrofit {
         val client = OkHttpClient
             .Builder()
