@@ -2,7 +2,7 @@ package com.adrianaisemberg.tictactoe.gameboard
 
 import androidx.lifecycle.MutableLiveData
 import com.adrianaisemberg.tictactoe.GameUpdateListener
-import com.adrianaisemberg.tictactoe.common.ViewViewModel
+import com.adrianaisemberg.tictactoe.mvvm.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.Game
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 

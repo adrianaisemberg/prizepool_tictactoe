@@ -26,7 +26,7 @@ class RetrofitBuilderImpl(private val settings: Settings) : RetrofitBuilder {
             .addNetworkInterceptor { chain ->
                 val requestBuilder = chain.request().newBuilder()
                 settings.authenticationKey?.let { key ->
-                    requestBuilder.header("api-key", key)
+                    requestBuilder.header(API_KEY, key)
                 }
                 chain.proceed(requestBuilder.build())
             }
@@ -42,5 +42,9 @@ class RetrofitBuilderImpl(private val settings: Settings) : RetrofitBuilder {
             .addConverterFactory(GsonConverterFactory.create(gson))
             .client(client)
             .build()
+    }
+
+    companion object {
+        private const val API_KEY = "api-key"
     }
 }

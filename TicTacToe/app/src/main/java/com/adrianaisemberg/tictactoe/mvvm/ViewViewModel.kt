@@ -1,4 +1,4 @@
-package com.adrianaisemberg.tictactoe.common
+package com.adrianaisemberg.tictactoe.mvvm
 
 import android.view.View
 

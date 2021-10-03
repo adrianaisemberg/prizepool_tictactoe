@@ -1,7 +1,7 @@
 package com.adrianaisemberg.tictactoe.echo
 
 import androidx.lifecycle.MutableLiveData
-import com.adrianaisemberg.tictactoe.common.ViewViewModel
+import com.adrianaisemberg.tictactoe.mvvm.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
 import com.adrianaisemberg.tictactoe.utils.async_io

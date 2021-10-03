@@ -7,7 +7,7 @@ import android.widget.LinearLayout
 import androidx.databinding.BindingAdapter
 import com.adrianaisemberg.tictactoe.GameUpdateListener
 import com.adrianaisemberg.tictactoe.R
-import com.adrianaisemberg.tictactoe.common.ViewModelView
+import com.adrianaisemberg.tictactoe.mvvm.ViewModelView
 import com.adrianaisemberg.tictactoe.databinding.ViewGameboardBinding
 import com.adrianaisemberg.tictactoe.service.Game
 import com.adrianaisemberg.tictactoe.utils.layoutInflater

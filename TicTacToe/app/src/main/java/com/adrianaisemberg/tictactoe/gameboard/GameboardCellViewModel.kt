@@ -1,7 +1,7 @@
 package com.adrianaisemberg.tictactoe.gameboard
 
 import androidx.lifecycle.MutableLiveData
-import com.adrianaisemberg.tictactoe.common.ViewViewModel
+import com.adrianaisemberg.tictactoe.mvvm.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.*
 import com.adrianaisemberg.tictactoe.utils.ActionOf
 import com.adrianaisemberg.tictactoe.utils.async_io
