@@ -33,7 +33,7 @@ class BoardGrid @JvmOverloads constructor(
 
         val count = gridSize - 1
         val rowHeight = height / gridSize
-        val rowWidth = width / gridSize
+        val colWidth = width / gridSize
 
         for (i in 1..count) {
             val startX = 0F
@@ -45,7 +45,7 @@ class BoardGrid @JvmOverloads constructor(
         for (i in 1..count) {
             val startY = 0F
             val endY = height.toFloat()
-            val x = (rowWidth * i).toFloat()
+            val x = (colWidth * i).toFloat()
             canvas.drawLine(x, startY, x, endY, paint)
         }
     }

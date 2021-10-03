@@ -14,6 +14,7 @@
         android:layout_height="wrap_content">
 
         <com.adrianaisemberg.tictactoe.views.BoardGrid
+            android:id="@+id/board_grid"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_above="@id/board_container"
@@ -27,6 +28,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
+        <com.adrianaisemberg.tictactoe.views.WinnerLine
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_above="@id/board_grid"
+            android:layout_below="@id/board_grid"
+            android:layout_alignStart="@id/board_grid"
+            android:layout_alignEnd="@id/board_grid"
+            app:game="@{viewModel.game}"
+            app:gridSize="@{viewModel.gridSize}" />
+
     </RelativeLayout>
 
 </layout>
