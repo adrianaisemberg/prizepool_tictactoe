@@ -2,11 +2,13 @@ package com.adrianaisemberg.tictactoe.echo
 
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
+import com.adrianaisemberg.tictactoe.utils.Scheduler
 import com.adrianaisemberg.tictactoe.utils.async_io
 
 class EchoAuthViewModel(
     private val service: TicTacToeService,
-) : EchoViewModel(service) {
+    private val scheduler: Scheduler,
+) : EchoViewModel(service, scheduler) {
 
     override fun beginEchoCheck() {
         super.setLoading()

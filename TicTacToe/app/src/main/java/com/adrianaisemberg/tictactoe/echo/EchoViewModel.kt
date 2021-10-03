@@ -4,18 +4,19 @@ import androidx.lifecycle.MutableLiveData
 import com.adrianaisemberg.tictactoe.mvvm.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.TicTacToeService
 import com.adrianaisemberg.tictactoe.service.enqueue
+import com.adrianaisemberg.tictactoe.utils.Scheduler
 import com.adrianaisemberg.tictactoe.utils.async_io
 import com.adrianaisemberg.tictactoe.utils.async_ui
-import com.adrianaisemberg.tictactoe.utils.scheduleNowAtFixedRate
 import java.util.*
 
 open class EchoViewModel(
     private val service: TicTacToeService,
+    private val scheduler: Scheduler,
 ) : ViewViewModel {
 
     val statusColor = MutableLiveData(COLOR_INITIAL)
     val isLoading = MutableLiveData(false)
-    private val timer = Timer()
+    private var timer: Timer? = null
 
     override fun onFinishInflate() {
         super.onFinishInflate()
@@ -24,7 +25,7 @@ open class EchoViewModel(
     }
 
     private fun loopEchoCheck() {
-        timer.scheduleNowAtFixedRate(INTERVAL) {
+        timer = scheduler.scheduleNowAtFixedRate(INTERVAL) {
             beginEchoCheck()
         }
     }
@@ -46,7 +47,7 @@ open class EchoViewModel(
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 
-        timer.cancel()
+        timer?.run(scheduler::cancel)
     }
 
     protected fun setSuccess() = setStatusColor(COLOR_SUCCESS)

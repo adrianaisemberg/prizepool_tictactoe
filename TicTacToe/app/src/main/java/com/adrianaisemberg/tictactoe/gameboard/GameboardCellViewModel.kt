@@ -13,7 +13,7 @@ class GameboardCellViewModel(
     private val onGameUpdated: ActionOf<Game>,
 ) : ViewViewModel {
 
-    val image = MutableLiveData(R.drawable.ic_empty)
+    val image = MutableLiveData(mapCellTileToImage(cell.tile))
 
     fun onCellClicked(game: Game) {
         // if already clicked
@@ -48,14 +48,15 @@ class GameboardCellViewModel(
 
         // update current cell and bound ui
         cell.tile = updatedCell.tile
-
-        image.value = when (updatedCell.tile) {
-            Tile.Empty -> R.drawable.ic_empty
-            Tile.X -> R.drawable.ic_x
-            Tile.O -> R.drawable.ic_o
-        }
+        image.value = mapCellTileToImage(updatedCell.tile)
 
         // update overall game listener (in case there's aa winner)
         onGameUpdated.invoke(game)
+    }
+
+    private fun mapCellTileToImage(tile: Tile): Int = when (tile) {
+        Tile.Empty -> R.drawable.ic_empty
+        Tile.X -> R.drawable.ic_x
+        Tile.O -> R.drawable.ic_o
     }
 }
