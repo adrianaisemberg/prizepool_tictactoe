@@ -1,6 +1,7 @@
 package com.adrianaisemberg.tictactoe.gameboard
 
 import androidx.lifecycle.MutableLiveData
+import com.adrianaisemberg.tictactoe.R
 import com.adrianaisemberg.tictactoe.mvvm.ViewViewModel
 import com.adrianaisemberg.tictactoe.service.*
 import com.adrianaisemberg.tictactoe.utils.ActionOf
@@ -12,7 +13,7 @@ class GameboardCellViewModel(
     private val onGameUpdated: ActionOf<Game>,
 ) : ViewViewModel {
 
-    val image = MutableLiveData(cell.tile.drawableResId)
+    val image = MutableLiveData(R.drawable.ic_empty)
 
     fun onCellClicked(game: Game) {
         // if already clicked
@@ -47,7 +48,12 @@ class GameboardCellViewModel(
 
         // update current cell and bound ui
         cell.tile = updatedCell.tile
-        image.value = updatedCell.tile.drawableResId
+
+        image.value = when (updatedCell.tile) {
+            Tile.Empty -> R.drawable.ic_empty
+            Tile.X -> R.drawable.ic_x
+            Tile.O -> R.drawable.ic_o
+        }
 
         // update overall game listener (in case there's aa winner)
         onGameUpdated.invoke(game)
