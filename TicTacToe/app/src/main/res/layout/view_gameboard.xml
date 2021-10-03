@@ -1,25 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
         <variable
             name="viewModel"
             type="com.adrianaisemberg.tictactoe.gameboard.GameboardViewModel" />
-
-        <import type="com.adrianaisemberg.tictactoe.utils.Drawables" />
     </data>
 
-    <FrameLayout
+    <RelativeLayout
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@{viewModel.background}">
+        android:layout_height="wrap_content">
+
+        <com.adrianaisemberg.tictactoe.views.BoardGrid
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_above="@id/board_container"
+            android:layout_below="@id/board_container"
+            android:layout_alignStart="@id/board_container"
+            android:layout_alignEnd="@id/board_container"
+            app:gridSize="@{viewModel.gridSize}" />
 
         <LinearLayout
             android:id="@+id/board_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
-    </FrameLayout>
+    </RelativeLayout>
 
 </layout>

@@ -10,9 +10,7 @@ import com.adrianaisemberg.tictactoe.databinding.ViewGameboardCellBinding
 import com.adrianaisemberg.tictactoe.service.Game
 import com.adrianaisemberg.tictactoe.utils.activity
 import com.adrianaisemberg.tictactoe.utils.layoutInflater
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 class GameboardCellView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
