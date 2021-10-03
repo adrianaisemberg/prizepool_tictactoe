@@ -8,7 +8,6 @@ class EncryptedSettingsIOImpl(private val context: Context) : SettingsIOBase() {
 
     init {
         createSharedPreferences()
-        initListeners()
     }
 
     private fun createSharedPreferences() {

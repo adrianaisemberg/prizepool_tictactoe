@@ -43,12 +43,6 @@ abstract class ViewModelView<
         viewModel.onFinishInflate()
     }
 
-    override fun setOnClickListener(listener: OnClickListener?) {
-        super.setOnClickListener(listener)
-
-        viewModel.setOnClickListener(listener)
-    }
-
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
 

@@ -30,27 +30,4 @@ class SettingsIOWrapper(
         encryptedSettingsIO.getValue(key, defaultValue)
 
     override fun <T> setValue(key: SettingKey, value: T) = encryptedSettingsIO.setValue(key, value)
-
-    override fun addListener(
-        key: SettingKey,
-        listener: SettingsChangedListener
-    ) = encryptedSettingsIO.addListener(key, listener)
-
-    override fun addListener(
-        keys: Array<SettingKey>,
-        listener: SettingsChangedListener
-    ) {
-        keys.forEach {
-            addListener(it, listener)
-        }
-    }
-
-    override fun removeListener(key: SettingKey, listener: SettingsChangedListener) =
-        encryptedSettingsIO.removeListener(key, listener)
-
-    override fun removeListener(keys: Array<SettingKey>, listener: SettingsChangedListener) {
-        keys.forEach {
-            removeListener(it, listener)
-        }
-    }
 }

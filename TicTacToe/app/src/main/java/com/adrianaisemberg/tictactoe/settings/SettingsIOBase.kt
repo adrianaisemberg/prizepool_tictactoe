@@ -2,48 +2,9 @@ package com.adrianaisemberg.tictactoe.settings
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
-import com.adrianaisemberg.tictactoe.utils.mutableListMapOf
 
 open class SettingsIOBase : SettingsIO {
     protected lateinit var sharedPreferences: SharedPreferences
-
-    private val keyListeners = mutableListMapOf<SettingKey, SettingsChangedListener>()
-
-    private lateinit var mainListener: SharedPreferences.OnSharedPreferenceChangeListener
-
-    protected fun initListeners() {
-        mainListener = SharedPreferences.OnSharedPreferenceChangeListener { _, key ->
-            val settingKey = SettingKey.valueOf(key)
-
-            keyListeners[settingKey].forEach { it.onSettingsChanged(settingKey) }
-        }
-
-        sharedPreferences.registerOnSharedPreferenceChangeListener(mainListener)
-    }
-
-    override fun addListener(
-        key: SettingKey,
-        listener: SettingsChangedListener
-    ) {
-        keyListeners[key] = listener
-    }
-
-    override fun addListener(
-        keys: Array<SettingKey>,
-        listener: SettingsChangedListener
-    ) {
-        keys.forEach {
-            addListener(it, listener)
-        }
-    }
-
-    override fun removeListener(key: SettingKey, listener: SettingsChangedListener) {
-        keyListeners[key].remove(listener)
-    }
-
-    override fun removeListener(keys: Array<SettingKey>, listener: SettingsChangedListener) {
-        keys.forEach { removeListener(it, listener) }
-    }
 
     @Suppress("UNCHECKED_CAST")
     override fun <T> getValue(key: SettingKey, defaultValue: T): T {
