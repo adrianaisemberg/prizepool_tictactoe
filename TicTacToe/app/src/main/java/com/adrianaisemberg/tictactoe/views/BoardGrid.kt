@@ -17,7 +17,7 @@ class BoardGrid @JvmOverloads constructor(
     private val paint = createPaint().apply {
         style = Paint.Style.STROKE
         strokeWidth = 3F
-        color = Color.BLACK
+        color = Color.WHITE
     }
 
     fun setGridSize(gridSize: Int) {
